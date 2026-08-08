@@ -19,6 +19,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 from typing import Any
+import os 
 
 import pandas as pd
 from pandas.api.types import is_numeric_dtype, is_datetime64_any_dtype, is_string_dtype
@@ -273,8 +274,10 @@ class OpenRouterClient:
 # --------------------------------------------------------------------------- #
 
 if __name__ == "__main__":
-    dataset_path = "./dataset/Start-Data-Analysis.xlsx"
-    df = load_dataset(dataset_path)
+    print(os.getcwd())
+    dataset_path = "dataset/Start-Data-Analysis.xlsx"
+    full_path = os.path.join(os.getcwd(), dataset_path)
+    df = load_dataset(full_path)
 
     profiler = DatasetProfiler(df)
     profile = profiler.build_profile()
