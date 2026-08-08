@@ -1,11 +1,7 @@
-from preproccess import * 
+from extract_data_profile import * 
 from fastapi import FastAPI, File, UploadFile
 
 app = FastAPI()
-
-@app.get('/')
-def root():
-    return {'message': 'OKAY!'}
 
 @app.post('/uploadfile/')
 async def upload_file(file: UploadFile = File(...)):
