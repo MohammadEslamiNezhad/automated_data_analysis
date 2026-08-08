@@ -267,22 +267,3 @@ class OpenRouterClient:
         )
         response.raise_for_status()
         return response.json()["choices"][0]["message"]["content"]
-
-
-# --------------------------------------------------------------------------- #
-# Example usage
-# --------------------------------------------------------------------------- #
-
-if __name__ == "__main__":
-    print(os.getcwd())
-    dataset_path = "dataset/Start-Data-Analysis.xlsx"
-    full_path = os.path.join(os.getcwd(), dataset_path)
-    df = load_dataset(full_path)
-
-    profiler = DatasetProfiler(df)
-    profile = profiler.build_profile()
-    print(json.dumps(profile, indent=2, ensure_ascii=False))
-
-    # To send to an LLM via OpenRouter:
-    # client = OpenRouterClient(api_key="sk-or-...")
-    # print(client.summarize_dataset(profiler.to_llm_summary()))
